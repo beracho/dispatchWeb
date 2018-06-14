@@ -15,6 +15,8 @@
     "home": "Home"
   },
   "buttons": {
+    "createIncident": "Create incident",
+    "clearData": "Clear data",
     "advanced": "Icons, Groups, Dropdowns",
     "button": "BUTTON",
     "colors": "Colors",
@@ -35,6 +37,7 @@
     "bubbleChart": "Bubble Chart"
   },
   "dashboard": {
+    "incidentReport": "Incident report",
     "dataVisualization": "Data Visualization",
     "success": "SUCCESS",
     "successMessage": "You successfully read this important alert message.",
@@ -44,6 +47,9 @@
     "teamMembers": "Team Members",
     "usersAndMembers": "Users & Members",
     "versions": "Versions"
+  },
+  "incidentReport": {
+    "incidentReportForm": "Incident Report Form"
   },
   "notificationsPage": {
     "alerts": {
@@ -105,6 +111,17 @@
       "disabled": "Disabled"
     },
     "inputs": {
+      "incidentNumber": "Incident id",
+      "notificationDate": "Notification date",
+      "client": "Client",
+      "reportingClient": "Reporting client name",
+      "contactEmail": "Contact email",
+      "city": "City",
+      "ubication": "ATM location",
+      "incidentDateTime": "Incident date & time",
+      "category": "Category",
+      "problemDescription": "Problem detail",
+      "fileSent": "Add file",
       "emailValidatedSuccess": "Email (validated with success)",
       "emailValidated": "Email (validated)",
       "inputWithIcon": "Input With Icon",

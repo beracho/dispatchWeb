@@ -12,6 +12,8 @@
     "welcome": "Bienvenido!"
   },
   "buttons": {
+    "createIncident": "Reportar incidente",
+    "clearData": "Limpiar formulario",
     "advanced": "Iconos, Grupos, Dropdowns",
     "button": "BOTON",
     "colors": "Colores",
@@ -32,11 +34,15 @@
     "verticalBarChart": "Vertical Bar Chart"
   },
   "dashboard": {
+    "incidentReport": "Reporte de incidentes",
     "elements": "Elementos",
     "success": "ÉXITO",
     "successMessage": "Ha leído correctamente este mensaje de alerta importante.",
     "teamMembers": "Miembros del Equipo",
     "versions": "Versiones"
+  },
+  "incidentReport": {
+    "incidentReportForm": "Formulario de Reporte de Incidentes"
   },
   "notificationsPage": {
     "alerts": {
@@ -90,6 +96,17 @@
       "subscribe": "Suscribirse a la newsletter"
     },
     "inputs": {
+      "incidentNumber": "Número de incidente",
+      "notificationDate": "Fecha de notificación",
+      "client": "Cliente",
+      "reportingClient": "Quien lo reporta",
+      "contactEmail": "Correo de contacto",
+      "city": "Ciudad",
+      "ubication": "Dirección/Ubicacion kiosko",
+      "incidentDateTime": "Fecha y hora de incidente",
+      "category": "Categoria",
+      "problemDescription": "Descripción del problema",
+      "fileSent": "Archivo adjunto",
       "emailValidatedSuccess": "Email (validado con éxito)",
       "emailValidated": "Email (validado)",
       "inputWithIcon": "Input con Icono",
