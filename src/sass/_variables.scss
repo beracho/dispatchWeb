@@ -1,3 +1,25 @@
+// Muted tones
+$pale-gold: #c0b283;
+$silk: #dcd0c0;
+$paper: #f4f4f4;
+$charcoal: #373737;
+// Orange and blue
+$tangerine: #e37222;
+$teal: #07889b;
+$powder: #66b9bf;
+$tan: #eeaa7b;
+// Muted and minimal
+$dusty: #96858f;
+$lavander: #6d7993;
+$overcast: #9099a2;
+// $paper: #d5d5d5;
+//viva
+$lemon-green: #aad500;
+$purple: #6b578c;
+$light-purple: #9e8abf;
+$dark-green: #6a8500;
+$paper-green: #e7f9a3;
+
 // Colors //
 $gray-light: #acb5be !default;
 $light-gray: #eee;
@@ -19,7 +41,14 @@ $theme-orange: #f7cc36;
 $theme-blue: #4ab2e3;
 $theme-violet: #db76df;
 $theme-pale: #d9d9d9;
-$brand-primary: $vue-green !default;
+// Theme
+$brand-primary: $pale-gold !default;
+$brand-secondary: $charcoal;
+$brand-light: $paper;
+$brand-pale: $silk;
+$brand-icons: $pale-gold;
+$sidebar-link-active-bg: $pale-gold;
+
 $brand-danger: $theme-red;
 $brand-warning: $theme-orange;
 $brand-info: $theme-blue;
@@ -44,19 +73,19 @@ $colors-map: (
 
 $theme-colors: (
   "primary": $brand-primary,
-  "secondary": $white,
+  "secondary": $teal,
+  "light": $powder,
+  "pale": $tan,
   "success": $light-green,
   "info": $brand-info,
   "warning": $brand-warning,
   "danger": $brand-danger,
-  "light": $light-gray2,
-  "dark": $almost-black,
-  "pale": $theme-pale
+  "dark": $almost-black
 );
 
 // Layout //
-$body-bg: $light-gray;
-$top-nav-bg: $darkest-gray;
+$body-bg: $brand-light;
+$top-nav-bg: $brand-secondary;
 $body-color: $vue-darkest-blue !default;
 $layout-padding: 24px;
 $layout-padding-right: 44px;
@@ -66,7 +95,7 @@ $nav-padding-left: $layout-padding;
 $nav-padding-right: $layout-padding-right;
 $navbar-brand-container-left: 75px;
 
-$sidebar-bg: $darkest-gray;
+$sidebar-bg: $brand-secondary;
 $sidebar-width: 225px;
 $sidebar-top: calc(#{$top-nav-height} + #{$layout-padding});
 $sidebar-left: $layout-padding;
@@ -77,7 +106,7 @@ $content-wrap-pt: $layout-padding;
 $content-wrap-pb: $layout-padding;
 $made-by-footer-pb: 27px;
 
-$greeny-box-shadow: 0 4px 9.6px 0.4px rgba($vue-green, .5);
+$greeny-box-shadow: 0 4px 9.6px 0.4px rgba($brand-primary, .5);
 
 $min-z-index: -1000;
 
@@ -149,7 +178,7 @@ $font-size-h4: 1.375rem !default;
 
 $headings-line-height: 1 !default;
 
-$blockquote-border-color: $vue-green;
+$blockquote-border-color: $brand-primary;
 $blockquote-small-color: $gray-light;
 $blockquote-border-width: 0.375rem;
 $blockquote-font-size: 1.5rem;
@@ -166,7 +195,6 @@ $sidebar-link-height: 64px;
 $sidebar-submenu-link-height: 48px;
 $sidebar-link-pl: 25px;
 $sidebar-submenu-link-pl: 74px;
-$sidebar-link-active-bg: $almost-black;
 $sidebar-arrow-right: 16px;
 $sidebar-menu-item-icon-size: 19px;
 $sidebar-viewport-height: calc(100vh - #{$top-nav-height} - #{$content-wrap-pt} - #{$content-wrap-pb});
