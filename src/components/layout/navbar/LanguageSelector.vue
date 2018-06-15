@@ -143,7 +143,7 @@
       padding: 9px 12px;
 
       &.active {
-        color: $vue-green;
+        color: $brand-primary;
         background-color: $darkest-gray;
       }
 

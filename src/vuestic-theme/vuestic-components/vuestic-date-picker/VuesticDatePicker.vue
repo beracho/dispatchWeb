@@ -53,7 +53,7 @@
   @import "../../../sass/mixins";
   @import "../../../sass/variables";
 
-  $datepickerActive: $vue-green;
+  $datepickerActive: $brand-primary;
   $datepickerBackground: #333333;
   $datepickerText: $white;
 

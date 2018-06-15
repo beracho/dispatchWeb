@@ -29,6 +29,6 @@
     height: 1.375rem;
     width: 1.375rem;
     color: $white;
-    background-color: $vue-green;
+    background-color: $brand-primary;
   }
 </style>
