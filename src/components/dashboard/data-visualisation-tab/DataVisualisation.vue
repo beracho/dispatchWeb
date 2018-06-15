@@ -61,7 +61,7 @@
                     :label="'forms.inputs.city' | translate"
                     v-model="incidentForm.city"
                     option-key="description"
-                    v-bind:options="cityOptions">
+                    v-bind:options="selectLocations">
                   </vuestic-simple-select>
                 </fieldset>
               </div>
@@ -85,7 +85,7 @@
                     :label="'forms.inputs.category' | translate"
                     v-model="incidentForm.category"
                     option-key="description"
-                    v-bind:options="categoryOptions">
+                    v-bind:options="selectCategories">
                   </vuestic-simple-select>
                 </fieldset>
               </div>
@@ -161,6 +161,8 @@
     },
     data () {
       return {
+        selectCategories: [],
+        selectLocations: [],
         incidentForm: {
           notificationDate: '',
           client: '',
@@ -185,17 +187,160 @@
           {
             value: 6
           }
-        ],
-        categoryOptions: [],
-        cityOptions: []
+        ]
       }
     },
     methods: {
       sendForm: function () {
         // console.log(this.incidentForm.incidentDateTime)
+      },
+      getCategories () {
+        this.selectCategories = [
+          {id: '27', description: 'DIFERENCIA DE ARQUEO'},
+          {id: '28', description: 'PROBLEMA WEB SERVICE'},
+          {id: '29', description: 'PROBLEMA DE COMUNICACION'},
+          {id: '30', description: 'OUT OF SERVICE'},
+          {id: '31', description: 'REVISION DE TRANSACCION'},
+          {id: '32', description: 'PROBLEMA SOPORTE TECNICO'}
+        ]
+        // var soap = require('strong-soap').soap
+        // // wsdl of the web service this client is going to invoke. For local wsdl you can use, url = './wsdls/stockquote.wsdl'
+        // var url = 'http://10.1.70.145/wsDispatch/Service1.asmx?wsdl'
+
+        // var requestArgs = {
+        //   symbol: 'IBM'
+        // }
+
+        // var options = {}
+        // soap.createClient(url, options, function(err, client) {
+        //   var method = client['StockQuote']['StockQuoteSoap']['GetQuote']
+        //   method(requestArgs, function(err, result, envelope, soapHeader) {
+        //     //response envelope
+        //     console.log('Response Envelope: \n' + envelope)
+        //     //'result' is the response body
+        //     console.log('Result: \n' + JSON.stringify(result))
+        //   })
+        // })
+
+//         function soapRequest(url, payload) {
+//           let xmlhttp = new XMLHttpRequest()
+//           xmlhttp.open('POST', url, true)
+
+//           // build SOAP request
+//           xmlhttp.onreadystatechange = function() {
+//             if (xmlhttp.readyState == 4) {
+//               if (xmlhttp.status == 200) {
+//                 parseXml(xmlhttp.responseText)
+//               }
+//             }
+//           }
+
+//           // Send the POST request
+//           xmlhttp.setRequestHeader('Content-Type', 'text/xml')
+//           xmlhttp.send(payload)
+//         }
+
+//         soapRequest('http://10.1.70.145/wsDispatch/Service1.asmx?wsdl',
+//           `<?xml version="1.0" encoding="utf-8"?>
+// <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+//   <soap:Body>
+//     <Categoria xmlns="http://tempuri.org/" />
+//   </soap:Body>
+// </soap:Envelope>`)
+
+        // var soap = require('soap')
+        // var url = 'http://10.1.70.145/wsDispatch/Service1.asmx?wsdl'
+        // var args = { name: 'value' }
+        // soap.createClient(url, function(err, client) {
+        //   client.MyFunction(args, function(err, result) {
+        //     console.log('----------------')
+        //     console.log(result)
+        //   })
+        // })
+
+
+        var xmlHttp = new XMLHttpRequest()
+        xmlHttp.open('POST', 'http://10.1.70.145/wsDispatch/Service1.asmx?wsdl', true)
+        var soapRequest = '<?xml version="1.0" encoding="utf-8"?>' +
+          '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">' +
+          '<soap:Body>' +
+          '<Categoria xmlns="http://tempuri.org/" />' +
+          '</soap:Body>' +
+          '</soap:Envelope>'
+        // xmlHttp.onreadystatechange = this.categoriesResponse(xmlHttp)
+        xmlHttp.onreadystatechange = function () {
+          if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+            // responseAuth = require('xml2js').parseString
+            HandleResponse(xmlHttp.responseText)
+            // var parseString = require('xml2js').parseString
+            // parseString(xmlHttp.response, function (err, result) {
+            //   if (err) {
+            //     console.log(err)
+            //   }
+            //   let datos = result['soap:Envelope']['soap:Body'][0].CategoriaResponse[0].CategoriaResult[0]['diffgr:diffgram'][0].NewDataSet[0].VISTA
+            //   console.log('+++++++++++')
+            //   console.log(datos)
+            //   datos.forEach(function (element) {
+            //     let tempCategorie = {
+            //       id: element.COD_CATEGORIA,
+            //       nombre: element.DESCRIPCION
+            //     }
+            //     this.selectCategories.push(tempCategorie)
+            //   }, this)
+            //   console.log('-----------')
+            //   console.dir(result)
+            // })
+          }
+        }
+        xmlHttp.setRequestHeader('Content-Type', 'text/xml')
+        xmlHttp.send(soapRequest)
+        function HandleResponse (response) {
+          // document.getElementById('SavedFile').innerHTML = response;
+          console.log(response)
+        }
+      },
+      categoriesResponse (xmlData) {
+        if (xmlData.readyState === 4) {
+          if (xmlData.status === 200) {
+            // responseAuth = require('xml2js').parseString
+
+            var parseString = require('xml2js').parseString
+            parseString(xmlData.response, function (err, result) {
+              if (err) {
+                console.log(err)
+              }
+              console.log('entra------')
+              console.log(this.selectCategories)
+              let datos = result['soap:Envelope']['soap:Body'][0].CategoriaResponse[0].CategoriaResult[0]['diffgr:diffgram'][0].NewDataSet[0].VISTA
+              console.log('+++++++++++')
+              console.log(datos)
+              datos.forEach(function (element) {
+                let tempCategorie = {
+                  id: element.COD_CATEGORIA,
+                  nombre: element.DESCRIPCION
+                }
+                this.selectCategories.push(tempCategorie)
+              }, this)
+              console.log('-----------')
+              console.log(this.selectCategories)
+              console.dir(result)
+            })
+          }
+        }
+      },
+      getLocations () {
+        this.selectLocations = [
+          {id: 'CBBA', description: 'Cochabamba'},
+          {id: 'LPZ', description: 'La Paz'},
+          {id: 'PND', description: 'Pando'},
+          {id: 'SCR', description: 'Sucre'},
+          {id: 'SCZ', description: 'Santa Cruz'}
+        ]
       }
     },
     created () {
+      this.getCategories()
+      this.getLocations()
       let currentdate = new Date()
       this.incidentForm.notificationDate = '' + currentdate.getFullYear() + '-' +
       ((currentdate.getMonth() + 1) > 9 ? (currentdate.getMonth() + 1) : '0' + (currentdate.getMonth() + 1)) + '-' +
