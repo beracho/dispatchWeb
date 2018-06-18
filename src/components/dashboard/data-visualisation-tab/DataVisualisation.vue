@@ -28,16 +28,11 @@
                         | translate}}</label><i class="bar"></i>
                     </div>
                   </div>
-                  <div class="form-group with-icon-right" :class="{'has-error': errors.has('successfulEmail'), 'valid': isSuccessfulEmailValid}">
+                  <div class="form-group">
                     <div class="input-group">
-                      <input id="successfulEmail" name="successfulEmail" v-model="incidentForm.reportingClient" v-validate="'required|email'" required/>
-                      <i class="fa fa-exclamation-triangle error-icon icon-right input-icon"></i>
-                      <i class="fa fa-check valid-icon icon-right input-icon"></i>
-                      <label class="control-label" for="successfulEmail">{{'forms.inputs.reportingClient' | translate}} </label>
+                      <input id="reportClient" v-model="incidentForm.reportingClient" required/>
+                      <label class="control-label" for="reportClient">{{'forms.inputs.reportingClient' | translate}} </label>
                       <i class="bar"></i>
-                      <small v-show="errors.has('successfulEmail')" class="help text-danger">
-                        {{ errors.first('successfulEmail') }}
-                      </small>
                     </div>
                   </div>
                 </fieldset>
@@ -58,11 +53,17 @@
                     </div>
                   </div>
                   <vuestic-simple-select
+                    id="cityOptions"
                     :label="'forms.inputs.city' | translate"
                     v-model="incidentForm.city"
                     option-key="description"
                     v-bind:options="selectLocations">
                   </vuestic-simple-select>
+                  <!-- <select v-model="incidentForm.city">
+                    <option v-for="option in selectLocations" v-bind:value="option.description" v-bind:key="option.id" required>
+                      {{ option.description }}
+                    </option>
+                  </select> -->
                 </fieldset>
               </div>
 
@@ -94,8 +95,9 @@
                 <fieldset>
                   <div class="form-group">
                     <div class="input-group">
-                      <textarea type="text" id="simple-textarea"
-                                required></textarea>
+                      <textarea
+                        v-model="incidentForm.problemDetail"
+                        required></textarea>
                       <label class="control-label" for="simple-textarea">{{'forms.inputs.problemDescription'
                         | translate}}</label><i class="bar"></i>
                     </div>
@@ -116,7 +118,7 @@
               </div>
 
               <div class="col-sm-6 d-flex justify-content-center" :class="{'col-lg-6 col-xl-6' : sidebarOpened, 'col-lg-6' : !sidebarOpened }">
-                <button class="btn btn-secondary">
+                <button class="btn btn-secondary" v-on:click="clearForm">
                   {{'buttons.clearData' | translate}}
                 </button>
               </div>
@@ -171,7 +173,8 @@
           city: '',
           ubication: '',
           incidentDateTime: '',
-          category: ''
+          category: '',
+          problemDetail: ''
         },
         donutChartData: DonutChartData,
         apiMode: false,
@@ -191,74 +194,27 @@
       }
     },
     methods: {
-      sendForm: function () {
-        // console.log(this.incidentForm.incidentDateTime)
+      clearForm () {
+        this.incidentForm = {
+          client: '',
+          reportingClient: '',
+          contactEmail: '',
+          city: '',
+          ubication: '',
+          incidentDateTime: '',
+          category: '',
+          problemDetail: ''
+        }
+        let currentdate = new Date()
+        this.incidentForm.notificationDate = '' + currentdate.getFullYear() + '-' +
+        ((currentdate.getMonth() + 1) > 9 ? (currentdate.getMonth() + 1) : '0' + (currentdate.getMonth() + 1)) + '-' +
+        ((currentdate.getDate()) > 9 ? (currentdate.getDate()) : '0' + (currentdate.getDate())) + ' ' +
+        ((currentdate.getHours()) > 9 ? (currentdate.getHours()) : '0' + (currentdate.getHours())) + ':' +
+        ((currentdate.getMinutes()) > 9 ? (currentdate.getMinutes()) : '0' + (currentdate.getMinutes()))
+      },
+      sendForm () {
       },
       getCategories () {
-        this.selectCategories = [
-          {id: '27', description: 'DIFERENCIA DE ARQUEO'},
-          {id: '28', description: 'PROBLEMA WEB SERVICE'},
-          {id: '29', description: 'PROBLEMA DE COMUNICACION'},
-          {id: '30', description: 'OUT OF SERVICE'},
-          {id: '31', description: 'REVISION DE TRANSACCION'},
-          {id: '32', description: 'PROBLEMA SOPORTE TECNICO'}
-        ]
-        // var soap = require('strong-soap').soap
-        // // wsdl of the web service this client is going to invoke. For local wsdl you can use, url = './wsdls/stockquote.wsdl'
-        // var url = 'http://10.1.70.145/wsDispatch/Service1.asmx?wsdl'
-
-        // var requestArgs = {
-        //   symbol: 'IBM'
-        // }
-
-        // var options = {}
-        // soap.createClient(url, options, function(err, client) {
-        //   var method = client['StockQuote']['StockQuoteSoap']['GetQuote']
-        //   method(requestArgs, function(err, result, envelope, soapHeader) {
-        //     //response envelope
-        //     console.log('Response Envelope: \n' + envelope)
-        //     //'result' is the response body
-        //     console.log('Result: \n' + JSON.stringify(result))
-        //   })
-        // })
-
-//         function soapRequest(url, payload) {
-//           let xmlhttp = new XMLHttpRequest()
-//           xmlhttp.open('POST', url, true)
-
-//           // build SOAP request
-//           xmlhttp.onreadystatechange = function() {
-//             if (xmlhttp.readyState == 4) {
-//               if (xmlhttp.status == 200) {
-//                 parseXml(xmlhttp.responseText)
-//               }
-//             }
-//           }
-
-//           // Send the POST request
-//           xmlhttp.setRequestHeader('Content-Type', 'text/xml')
-//           xmlhttp.send(payload)
-//         }
-
-//         soapRequest('http://10.1.70.145/wsDispatch/Service1.asmx?wsdl',
-//           `<?xml version="1.0" encoding="utf-8"?>
-// <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-//   <soap:Body>
-//     <Categoria xmlns="http://tempuri.org/" />
-//   </soap:Body>
-// </soap:Envelope>`)
-
-        // var soap = require('soap')
-        // var url = 'http://10.1.70.145/wsDispatch/Service1.asmx?wsdl'
-        // var args = { name: 'value' }
-        // soap.createClient(url, function(err, client) {
-        //   client.MyFunction(args, function(err, result) {
-        //     console.log('----------------')
-        //     console.log(result)
-        //   })
-        // })
-
-
         var xmlHttp = new XMLHttpRequest()
         xmlHttp.open('POST', 'http://10.1.70.145/wsDispatch/Service1.asmx?wsdl', true)
         var soapRequest = '<?xml version="1.0" encoding="utf-8"?>' +
@@ -267,75 +223,56 @@
           '<Categoria xmlns="http://tempuri.org/" />' +
           '</soap:Body>' +
           '</soap:Envelope>'
-        // xmlHttp.onreadystatechange = this.categoriesResponse(xmlHttp)
-        xmlHttp.onreadystatechange = function () {
+        xmlHttp.onreadystatechange = () => {
           if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-            // responseAuth = require('xml2js').parseString
-            HandleResponse(xmlHttp.responseText)
-            // var parseString = require('xml2js').parseString
-            // parseString(xmlHttp.response, function (err, result) {
-            //   if (err) {
-            //     console.log(err)
-            //   }
-            //   let datos = result['soap:Envelope']['soap:Body'][0].CategoriaResponse[0].CategoriaResult[0]['diffgr:diffgram'][0].NewDataSet[0].VISTA
-            //   console.log('+++++++++++')
-            //   console.log(datos)
-            //   datos.forEach(function (element) {
-            //     let tempCategorie = {
-            //       id: element.COD_CATEGORIA,
-            //       nombre: element.DESCRIPCION
-            //     }
-            //     this.selectCategories.push(tempCategorie)
-            //   }, this)
-            //   console.log('-----------')
-            //   console.dir(result)
-            // })
+            var parseString = require('xml2js').parseString
+            parseString(xmlHttp.response, (err, result) => {
+              if (err) {
+                console.log(err)
+              }
+              let datos = result['soap:Envelope']['soap:Body'][0].CategoriaResponse[0].CategoriaResult[0]['diffgr:diffgram'][0].NewDataSet[0].VISTA
+              datos.forEach(function (element) {
+                let tempCategorie = {
+                  id: element.COD_CATEGORIA[0],
+                  description: element.DESCRIPCION[0]
+                }
+                this.selectCategories.push(tempCategorie)
+              }, this)
+            })
           }
         }
         xmlHttp.setRequestHeader('Content-Type', 'text/xml')
         xmlHttp.send(soapRequest)
-        function HandleResponse (response) {
-          // document.getElementById('SavedFile').innerHTML = response;
-          console.log(response)
-        }
       },
-      categoriesResponse (xmlData) {
-        if (xmlData.readyState === 4) {
-          if (xmlData.status === 200) {
-            // responseAuth = require('xml2js').parseString
-
+      getLocations () {
+        var xmlHttp = new XMLHttpRequest()
+        xmlHttp.open('POST', 'http://10.1.70.145/wsDispatch/Service1.asmx?wsdl', true)
+        var soapRequest = '<?xml version="1.0" encoding="utf-8"?>' +
+          '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">' +
+          '<soap:Body>' +
+          '<Sucursales xmlns="http://tempuri.org/" />' +
+          '</soap:Body>' +
+          '</soap:Envelope>'
+        xmlHttp.onreadystatechange = () => {
+          if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
             var parseString = require('xml2js').parseString
-            parseString(xmlData.response, function (err, result) {
+            parseString(xmlHttp.response, (err, result) => {
               if (err) {
                 console.log(err)
               }
-              console.log('entra------')
-              console.log(this.selectCategories)
-              let datos = result['soap:Envelope']['soap:Body'][0].CategoriaResponse[0].CategoriaResult[0]['diffgr:diffgram'][0].NewDataSet[0].VISTA
-              console.log('+++++++++++')
-              console.log(datos)
+              let datos = result['soap:Envelope']['soap:Body'][0].SucursalesResponse[0].SucursalesResult[0]['diffgr:diffgram'][0].NewDataSet[0].VISTA
               datos.forEach(function (element) {
-                let tempCategorie = {
-                  id: element.COD_CATEGORIA,
-                  nombre: element.DESCRIPCION
+                let tempLocation = {
+                  id: element.COD_SUCURSAL[0],
+                  description: element.CIUDAD[0]
                 }
-                this.selectCategories.push(tempCategorie)
+                this.selectLocations.push(tempLocation)
               }, this)
-              console.log('-----------')
-              console.log(this.selectCategories)
-              console.dir(result)
             })
           }
         }
-      },
-      getLocations () {
-        this.selectLocations = [
-          {id: 'CBBA', description: 'Cochabamba'},
-          {id: 'LPZ', description: 'La Paz'},
-          {id: 'PND', description: 'Pando'},
-          {id: 'SCR', description: 'Sucre'},
-          {id: 'SCZ', description: 'Santa Cruz'}
-        ]
+        xmlHttp.setRequestHeader('Content-Type', 'text/xml')
+        xmlHttp.send(soapRequest)
       }
     },
     created () {
