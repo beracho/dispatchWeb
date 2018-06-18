@@ -64,7 +64,7 @@
         <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="#"
            @click.prevent="closeMenu">
           <span class="avatar-container">
-            <img src="http://i.imgur.com/nfa5itq.png"/>
+            <img src="../../../assets/vendor/leaflet/profileDefault.jpg" alt="Smiley face" height="42" width="150"> 
           </span>
         </a>
         <div class="dropdown-menu last">
