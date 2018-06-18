@@ -10,7 +10,7 @@
       </main>
     </div>
     <div class="made-by-footer">
-      ©2018. Made by&nbsp;<a href="http://epicmax.co" target="_blank">Epicmax </a>
+      ©2018. Made by&nbsp;<a href="http://http://www.alphasys.com.bo/" target="_blank">Alpha Systems </a>
     </div>
   </div>
 </template>

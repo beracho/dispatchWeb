@@ -15,11 +15,11 @@
       </div>
 
       <div class="navbar-text offset-md-1 col-md-7 d-none d-lg-flex align-items-center justify-content-center">
-        {{'navbar.messageUs' | translate}}&nbsp;<a href="mailto:hello@epicmax.co">hello@epicmax.co</a>
+        <!-- {{'navbar.messageUs' | translate}}&nbsp;<a href="mailto:hello@epicmax.co">hello@epicmax.co</a> -->
       </div>
 
       <div class="col nav-item dropdown navbar-dropdown d-flex align-items-center justify-content-center" v-dropdown>
-        <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="#"
+        <!-- <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="#"
            @click.prevent="closeMenu">
           <span class="i-nav-messages notify"></span>
         </a>
@@ -35,10 +35,10 @@
               <a class="plain-link" href="#">{{'messages.all' | translate}}</a>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="col nav-item dropdown navbar-dropdown d-flex align-items-center justify-content-center" v-dropdown>
-        <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="#"
+        <!-- <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="#"
            @click.prevent="closeMenu">
           <span class="i-nav-notification notify"></span>
         </a>
@@ -57,7 +57,7 @@
               <a class="plain-link" href="#">{{'notifications.all' | translate}}</a>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <language-selector :options="langs"></language-selector>
       <div class="col nav-item dropdown navbar-dropdown d-flex align-items-center justify-content-center" v-dropdown>
