@@ -75,7 +75,7 @@
                     <div class="input-group">
                       <vuestic-date-picker
                         id="date-picker-time"
-                        :config="{enableTime: true}"
+                        :config="{enableTime: true, disable: datePickerDisabled}"
                         v-model="incidentForm.incidentDateTime"
                       />
                       <label class="control-label" for="date-picker-time">
@@ -158,7 +158,7 @@
   export default {
     name: 'data-visualisation-tab',
     computed: {
-      // datePickerDisabled: () => [date => !(date.getDate() % 5)],
+      datePickerDisabled: () => [date => !(date < (new Date()))],
       isSuccessfulEmailValid () {
         let isValid = false
         if (this.formFields.successfulEmail) {
