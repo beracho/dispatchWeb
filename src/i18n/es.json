@@ -98,6 +98,7 @@
       "subscribe": "Suscribirse a la newsletter"
     },
     "inputs": {
+      "telephoneNumber": "Número de teléfono",
       "incidentNumber": "Número de incidente",
       "notificationDate": "Fecha de notificación",
       "client": "Cliente",

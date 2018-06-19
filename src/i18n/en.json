@@ -113,6 +113,7 @@
       "disabled": "Disabled"
     },
     "inputs": {
+      "telephoneNumber": "Telephone Number",
       "incidentNumber": "Incident id",
       "notificationDate": "Notification date",
       "client": "Client",

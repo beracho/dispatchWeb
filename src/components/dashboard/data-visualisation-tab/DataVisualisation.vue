@@ -59,11 +59,13 @@
                     option-key="description"
                     v-bind:options="selectLocations">
                   </vuestic-simple-select>
-                  <!-- <select v-model="incidentForm.city">
-                    <option v-for="option in selectLocations" v-bind:value="option.description" v-bind:key="option.id" required>
-                      {{ option.description }}
-                    </option>
-                  </select> -->
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input id="telephone-input" v-model="incidentForm.telephone" required/>
+                      <label class="control-label" for="telephone-input">{{'forms.inputs.telephoneNumber'
+                        | translate}}</label><i class="bar"></i>
+                    </div>
+                  </div>
                 </fieldset>
               </div>
 
@@ -181,7 +183,8 @@
           ubication: '',
           incidentDateTime: '',
           category: '',
-          problemDetail: ''
+          problemDetail: '',
+          telephone: ''
         },
         donutChartData: DonutChartData,
         apiMode: false,
@@ -212,7 +215,8 @@
           ubication: '',
           incidentDateTime: '',
           category: '',
-          problemDetail: ''
+          problemDetail: '',
+          telephone: ''
         }
         let currentdate = new Date()
         this.incidentForm.notificationDate = '' + currentdate.getFullYear() + '-' +
