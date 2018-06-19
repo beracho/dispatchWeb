@@ -12,8 +12,8 @@
     "welcome": "Bienvenido!"
   },
   "buttons": {
-    "createIncident": "Reportar incidente",
-    "clearData": "Limpiar formulario",
+    "createIncident": "Reportar",
+    "clearData": "Limpiar",
     "advanced": "Iconos, Grupos, Dropdowns",
     "button": "BOTON",
     "colors": "Colores",

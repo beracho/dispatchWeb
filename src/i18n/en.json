@@ -15,8 +15,8 @@
     "home": "Home"
   },
   "buttons": {
-    "createIncident": "Create incident",
-    "clearData": "Clear data",
+    "createIncident": "Create",
+    "clearData": "Clear",
     "advanced": "Icons, Groups, Dropdowns",
     "button": "BUTTON",
     "colors": "Colors",

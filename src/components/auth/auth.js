@@ -5,7 +5,7 @@ export default {
     login (data) {
       let responseAuth = {
         successfull: false,
-        message: ''
+        message: 'Llene todos los campos'
       }
       var xmlHttp = new XMLHttpRequest()
       xmlHttp.open('POST', 'http://10.1.70.145/wsDispatch/Service1.asmx?wsdl', true)
@@ -26,25 +26,26 @@ export default {
               console.log(err)
             }
             let datos = result['soap:Envelope']['soap:Body'][0].LoginResponse[0]
-            if (datos.LoginResult === 'true') {
+            if (datos.LoginResult[0] === 'true') {
               // loguea
               responseAuth.message = 'Autenticación exitosa'
               responseAuth.successfull = true
-              this.$storage.setUser(data.username[0])
               this.$router.push('Dashboard')
             } else {
               // error
               responseAuth.message = result['soap:Envelope']['soap:Body'][0].LoginResponse[0].strMessage[0]
             }
+            this.showToast(responseAuth.message, {
+              icon: this.toastIcon,
+              position: 'top-left',
+              duration: this.toastDuration,
+              fullWidth: this.isToastFullWidth
+            })
           })
         }
       }
       xmlHttp.setRequestHeader('Content-Type', 'text/xml')
       xmlHttp.send(soapRequest)
-      // .then(response => {
-      //   console.log('11111111111111')
-      //   console.log(response)
-      // })
       return responseAuth
     },
 

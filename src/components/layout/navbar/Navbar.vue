@@ -64,7 +64,7 @@
         <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="#"
            @click.prevent="closeMenu">
           <span class="avatar-container">
-            <img src="../../../assets/vendor/leaflet/profileDefault.jpg" alt="Smiley face" height="42" width="150"> 
+            <img src="../../../assets/vendor/leaflet/profileDefault.jpg" alt="Smiley face" height="42" width="150">
           </span>
         </a>
         <div class="dropdown-menu last">
@@ -73,7 +73,7 @@
               <a class="plain-link" href="#">{{'user.profile' | translate}}</a>
             </div>
             <div class="dropdown-item plain-link-item">
-              <a class="plain-link" href="#">{{'user.logout' | translate}}</a>
+              <a class="plain-link" href="#/auth/login">{{'user.logout' | translate}}</a>
             </div>
           </div>
         </div>
