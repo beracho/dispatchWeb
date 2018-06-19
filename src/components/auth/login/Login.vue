@@ -59,7 +59,7 @@
         if (this.form.username === '' || this.form.password === '') {
           this.showToast('Llene todos los campos', {
             icon: this.toastIcon,
-            position: 'top-left',
+            position: 'top-right',
             duration: this.toastDuration,
             fullWidth: this.isToastFullWidth
           })

@@ -37,7 +37,7 @@ export default {
             }
             this.showToast(responseAuth.message, {
               icon: this.toastIcon,
-              position: 'top-left',
+              position: 'top-right',
               duration: this.toastDuration,
               fullWidth: this.isToastFullWidth
             })
