@@ -4,7 +4,7 @@
       <!-- <router-link class="navbar-brand" to="/dashboard">
         <i class="i-vuestic"></i>
       </router-link> -->
-       <img src="../../../assets/vendor/leaflet/alphaLogo.png" alt="Smiley face" height="42" width="150"> 
+       <img src="../../../assets/vendor/leaflet/alphaLogo1.png" alt="Smiley face" height="42" width="150"> 
     </div>
 
     <div class="row navbar-container">

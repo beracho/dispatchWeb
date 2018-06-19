@@ -8,7 +8,7 @@
       <div class="auth-wallpaper col-6 d-none d-lg-flex">
         <!-- <div class="oblique"></div> -->
         <!-- <router-link class="i-vuestic" :to="{path: '/'}"></router-link> -->
-       <img src="../../assets/vendor/leaflet/alphaLogo.png" alt="Smiley face" height="150" width="450"> 
+       <img src="../../assets/vendor/leaflet/alphaLogo1.png" alt="Smiley face" height="150" width="450"> 
       </div>
     </div>
   </div>

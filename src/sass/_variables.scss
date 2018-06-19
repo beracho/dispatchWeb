@@ -17,8 +17,13 @@ $overcast: #9099a2;
 $lemon-green: #aad500;
 $purple: #6b578c;
 $light-purple: #9e8abf;
-$dark-green: #6a8500;
+$dark-lemon-green: #6a8500;
 $paper-green: #e7f9a3;
+// Alpha
+$alpha-primary: #68AA61;
+$alpha-secondary: #495055;
+$alpha-gray: #769789;
+$alpha-pale: #cfe0e9;
 
 // Colors //
 $gray-light: #acb5be !default;
@@ -42,12 +47,12 @@ $theme-blue: #4ab2e3;
 $theme-violet: #db76df;
 $theme-pale: #d9d9d9;
 // Theme
-$brand-primary: $charcoal !default;
-$brand-secondary: $pale-gold;
-$brand-light: $paper;
-$brand-pale: $silk;
-$brand-icons: $charcoal;
-$sidebar-link-active-bg: $charcoal;
+$brand-primary: $alpha-primary !default;
+$brand-secondary: $alpha-secondary;
+$brand-light: $alpha-pale;
+$brand-pale: $alpha-gray;
+$brand-icons: $alpha-primary;
+$sidebar-link-active-bg: $alpha-gray;
 
 $brand-danger: $theme-red;
 $brand-warning: $theme-orange;
