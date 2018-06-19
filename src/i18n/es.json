@@ -34,6 +34,8 @@
     "verticalBarChart": "Vertical Bar Chart"
   },
   "dashboard": {
+    "reportCreated": "Reporte Creado Exitosamente",
+    "modalText": "Caso generado exitosamente con el número:",
     "incidentReport": "Reporte de incidentes",
     "elements": "Elementos",
     "success": "ÉXITO",

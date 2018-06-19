@@ -37,6 +37,8 @@
     "bubbleChart": "Bubble Chart"
   },
   "dashboard": {
+    "reportCreated": "Report Created Successfully",
+    "modalText": "Incident register succesfull, your case number is:",    
     "incidentReport": "Incident report",
     "dataVisualization": "Data Visualization",
     "success": "SUCCESS",
