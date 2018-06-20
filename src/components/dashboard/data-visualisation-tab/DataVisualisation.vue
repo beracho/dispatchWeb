@@ -356,6 +356,12 @@
       }
     },
     created () {
+      // Redirect
+      if (this.$storage.get('session') === null) {
+        this.$router.push('auth/login')
+      }
+
+      this.incidentForm.client = this.$storage.getClient()
       this.getCategories()
       this.getLocations()
       let currentdate = new Date()

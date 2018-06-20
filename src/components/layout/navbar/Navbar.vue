@@ -72,8 +72,8 @@
             <div class="dropdown-item plain-link-item">
               <a class="plain-link" href="#">{{'user.profile' | translate}}</a>
             </div>
-            <div class="dropdown-item plain-link-item">
-              <a class="plain-link" href="#/auth/login">{{'user.logout' | translate}}</a>
+            <div class="dropdown-item plain-link-item" @click="closeSession()">
+              {{'user.logout' | translate}}
             </div>
           </div>
         </div>
@@ -85,8 +85,10 @@
 <script>
   import {mapGetters, mapActions} from 'vuex'
   import LanguageSelector from './LanguageSelector'
+  import Auth from '../../auth/auth'
 
   export default {
+    mixins: [ Auth ],
     name: 'navbar',
 
     components: {
@@ -120,7 +122,10 @@
         'closeMenu',
         'toggleSidebar',
         'isToggleWithoutAnimation'
-      ])
+      ]),
+      closeSession () {
+        this.logout()
+      }
     }
   }
 </script>

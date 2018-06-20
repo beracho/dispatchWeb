@@ -30,7 +30,11 @@ export default {
               // loguea
               responseAuth.message = 'Autenticación exitosa'
               responseAuth.successfull = true
+              this.$storage.setUser(data.username)
+              this.$storage.setClient(datos.Client[0])
+              this.$storage.set('session', data.username)
               this.$router.push('Dashboard')
+              this.timerSession()
             } else {
               // error
               responseAuth.message = result['soap:Envelope']['soap:Body'][0].LoginResponse[0].strMessage[0]
@@ -59,21 +63,19 @@ export default {
       }
 
       this.$storage.removeUser()
-      this.$storage.remove('menu')
-      this.$storage.remove('token')
-      this.$storage.remove('sidenav')
-      this.$storage.remove('actualPage')
+      this.$storage.removeClient()
+      this.$storage.remove('session')
 
-      store.commit('setDefault')
-      let route = this.$router.currentRoute.path
-      let redirect = 'login'
-      if (['/loginAdmin', '/confirmarCuenta'].indexOf(route) !== -1) {
-        if (this.$router.currentRoute.query !== {}) {
-          redirect = this.$router.currentRoute.fullPath
-        } else {
-          redirect = route.substring(1)
-        }
-      }
+      // store.commit('setDefault')
+      // let route = this.$router.currentRoute.path
+      let redirect = 'auth/login'
+      // if (['/loginAdmin', '/confirmarCuenta'].indexOf(route) !== -1) {
+      //   if (this.$router.currentRoute.query !== {}) {
+      //     redirect = this.$router.currentRoute.fullPath
+      //   } else {
+      //     redirect = route.substring(1)
+      //   }
+      // }
       router.push(redirect)
     },
 
