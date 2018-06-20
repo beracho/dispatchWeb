@@ -21,23 +21,8 @@
                       <i class="bar"></i>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input id="simple-input" v-model="incidentForm.client" required/>
-                      <label class="control-label" for="simple-input">{{'forms.inputs.client'
-                        | translate}}</label><i class="bar"></i>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input id="reportClient" v-model="incidentForm.reportingClient" required/>
-                      <label class="control-label" for="reportClient">{{'forms.inputs.reportingClient' | translate}} </label>
-                      <i class="bar"></i>
-                    </div>
-                  </div>
                 </fieldset>
               </div>
-
               <div class="col-md-4">
                 <fieldset>
                   <div class="form-group with-icon-right" :class="{'has-error': errors.has('successfulEmail'), 'valid': isSuccessfulEmailValid}">
@@ -52,23 +37,8 @@
                       </small>
                     </div>
                   </div>
-                  <vuestic-simple-select
-                    id="cityOptions"
-                    :label="'forms.inputs.city' | translate"
-                    v-model="incidentForm.city"
-                    option-key="description"
-                    v-bind:options="selectLocations">
-                  </vuestic-simple-select>
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input id="telephone-input" v-model="incidentForm.telephone" required/>
-                      <label class="control-label" for="telephone-input">{{'forms.inputs.telephoneNumber'
-                        | translate}}</label><i class="bar"></i>
-                    </div>
-                  </div>
                 </fieldset>
               </div>
-
               <div class="col-md-4">
                 <fieldset>
                   <div class="form-group">
@@ -84,6 +54,34 @@
                       <i class="bar"></i>
                     </div>
                   </div>
+                </fieldset>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <fieldset>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input id="simple-input" v-model="incidentForm.client" required/>
+                      <label class="control-label" for="simple-input">{{'forms.inputs.client'
+                        | translate}}</label><i class="bar"></i>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="col-md-4">
+                <fieldset>
+                  <vuestic-simple-select
+                    id="cityOptions"
+                    :label="'forms.inputs.city' | translate"
+                    v-model="incidentForm.city"
+                    option-key="description"
+                    v-bind:options="selectLocations">
+                  </vuestic-simple-select>
+                </fieldset>
+              </div>
+              <div class="col-md-4">
+                <fieldset>
                   <vuestic-simple-select
                     :label="'forms.inputs.category' | translate"
                     v-model="incidentForm.category"
@@ -92,7 +90,34 @@
                   </vuestic-simple-select>
                 </fieldset>
               </div>
-
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <fieldset>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input id="reportClient" v-model="incidentForm.reportingClient" required/>
+                      <label class="control-label" for="reportClient">{{'forms.inputs.reportingClient' | translate}} </label>
+                      <i class="bar"></i>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="col-md-4">
+                <fieldset>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input id="telephone-input" v-model="incidentForm.telephone" required/>
+                      <label class="control-label" for="telephone-input">{{'forms.inputs.telephoneNumber'
+                        | translate}}</label><i class="bar"></i>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="col-md-4">
+                <fieldset>
+                </fieldset>
+              </div>
               <div class="col-md-6">
                 <fieldset>
                   <div class="form-group">
