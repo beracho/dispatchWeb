@@ -160,7 +160,7 @@
         </vuestic-widget>
       </div>
     </div>
-    <vuestic-modal :show.sync="show" ref="mediumModal" :okText="'modal.confirm' | translate"
+    <vuestic-modal :show.sync="show" ref="mediumModal" :okText="'modal.accept' | translate"
                    :cancelText="'modal.cancel' | translate">
       <div slot="title">{{'dashboard.reportCreated' | translate}}</div>
       <div>
@@ -370,6 +370,17 @@
       ((currentdate.getDate()) > 9 ? (currentdate.getDate()) : '0' + (currentdate.getDate())) + ' ' +
       ((currentdate.getHours()) > 9 ? (currentdate.getHours()) : '0' + (currentdate.getHours())) + ':' +
       ((currentdate.getMinutes()) > 9 ? (currentdate.getMinutes()) : '0' + (currentdate.getMinutes()))
+    },
+    watch: {
+      'incidentForm.telephone': function (newValue, oldValue) {
+        let filteredValue = newValue.match(/\d/g)
+        if (filteredValue !== null) {
+          filteredValue = filteredValue.join('')
+        } else {
+          filteredValue = ''
+        }
+        this.incidentForm.telephone = filteredValue
+      }
     }
   }
 </script>
