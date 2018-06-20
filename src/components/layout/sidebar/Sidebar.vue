@@ -2,7 +2,7 @@
   <aside class="sidebar">
     <vuestic-scrollbar>
       <ul class="sidebar-menu">
-        <li v-for="(item, index) in menuItems" :key="item.name">
+        <li v-for="(item, index) in sideMenuItems" :key="item.name">
           <router-link
             class="sidebar-link"
             :to="item.path"
@@ -74,16 +74,33 @@
     watch: {
       $route (route) {
         let parent = _findMatchingParentMenuItem.call(this, route.name) || {}
+        this.sideMenuItems.length = 0
         this.menuItems.forEach((item) => {
-          this.expand({
-            menuItem: item,
-            expand: parent.name === item.name
-          })
+          if (item.name !== 'auth') {
+            this.sideMenuItems.push(item)
+            this.expand({
+              menuItem: item,
+              expand: parent.name === item.name
+            })
+          }
         })
       }
     },
+    created () {
+      this.sideMenuItems.length = 0
+      this.menuItems.forEach((item) => {
+        if (item.name !== 'auth') {
+          this.sideMenuItems.push(item)
+          // this.expand({
+          //   menuItem: item,
+          //   expand: parent.name === item.name
+          // })
+        }
+      })
+    },
     data () {
       return {
+        sideMenuItems: [],
         show: false
       }
     }
