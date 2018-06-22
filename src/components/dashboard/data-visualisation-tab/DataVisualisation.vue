@@ -251,48 +251,68 @@
         ((currentdate.getMinutes()) > 9 ? (currentdate.getMinutes()) : '0' + (currentdate.getMinutes()))
       },
       sendForm () {
-        var xmlHttp = new XMLHttpRequest()
-        xmlHttp.open('POST', 'http://10.1.70.145/wsDispatch/Service1.asmx?wsdl', true)
-        var soapRequest = '<?xml version="1.0" encoding="utf-8"?>' +
-          '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">' +
-          '<soap:Body>' +
-          '<Insertar_Caso xmlns="http://tempuri.org/">' +
-          '<sucursal>' + this.incidentForm.city.id + '</sucursal>' +
-          '<fechareg>' + this.incidentForm.notificationDate + '</fechareg>' +
-          '<descripcion>' + this.incidentForm.problemDetail + '</descripcion>' +
-          '<contacto>' + this.incidentForm.reportingClient + '</contacto>' +
-          '<correo>' + this.incidentForm.contactEmail + '</correo>' +
-          '<ubicacion>' + this.incidentForm.city.description + '</ubicacion>' +
-          '<criticidad>' + this.incidentForm.category.id + '</criticidad>' +
-          '</Insertar_Caso>' +
-          '</soap:Body>' +
-          '</soap:Envelope>'
-        xmlHttp.onreadystatechange = () => {
-          if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-            var parseString = require('xml2js').parseString
-            parseString(xmlHttp.response, (err, result) => {
-              if (err) {
-                console.log(err)
-              }
-              let datos = result['soap:Envelope']['soap:Body'][0].Insertar_CasoResponse[0]
-              if (datos.Insertar_CasoResult[0] !== '-1') {
-                // Muestra número de caso
-                this.incidentResponse = datos.Insertar_CasoResult[0]
-                this.$refs.mediumModal.open()
-              } else {
-                // Error
-                this.showToast('Error al registrar datos', {
-                  icon: 'fa-star-o',
-                  position: 'top-left',
-                  duration: 2500,
-                  fullWidth: this.isToastFullWidth
-                })
-              }
-            })
+        if (this.isFormValid()) {
+          var xmlHttp = new XMLHttpRequest()
+          xmlHttp.open('POST', 'http://10.1.70.145/wsDispatch/Service1.asmx?wsdl', true)
+          var soapRequest = '<?xml version="1.0" encoding="utf-8"?>' +
+            '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">' +
+            '<soap:Body>' +
+            '<Insertar_Caso xmlns="http://tempuri.org/">' +
+            '<sucursal>' + this.incidentForm.city.id + '</sucursal>' +
+            '<fechareg>' + this.incidentForm.notificationDate + '</fechareg>' +
+            '<descripcion>' + this.incidentForm.problemDetail + '</descripcion>' +
+            '<contacto>' + this.incidentForm.reportingClient + '</contacto>' +
+            '<correo>' + this.incidentForm.contactEmail + '</correo>' +
+            '<ubicacion>' + this.incidentForm.city.description + '</ubicacion>' +
+            '<criticidad>' + this.incidentForm.category.id + '</criticidad>' +
+            '</Insertar_Caso>' +
+            '</soap:Body>' +
+            '</soap:Envelope>'
+          xmlHttp.onreadystatechange = () => {
+            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+              var parseString = require('xml2js').parseString
+              parseString(xmlHttp.response, (err, result) => {
+                if (err) {
+                  console.log(err)
+                }
+                let datos = result['soap:Envelope']['soap:Body'][0].Insertar_CasoResponse[0]
+                if (datos.Insertar_CasoResult[0] !== '-1') {
+                  // Muestra número de caso
+                  this.incidentResponse = datos.Insertar_CasoResult[0]
+                  this.$refs.mediumModal.open()
+                } else {
+                  // Error
+                  this.showToast('Error al registrar datos', {
+                    icon: 'fa-star-o',
+                    position: 'top-right',
+                    duration: 2500,
+                    fullWidth: this.isToastFullWidth
+                  })
+                }
+              })
+            }
           }
+          xmlHttp.setRequestHeader('Content-Type', 'text/xml')
+          xmlHttp.send(soapRequest)
+        } else {
+          // Error
+          this.showToast('Llene todos los campos', {
+            icon: 'fa-star-o',
+            position: 'top-right',
+            duration: 2500,
+            fullWidth: this.isToastFullWidth
+          })
         }
-        xmlHttp.setRequestHeader('Content-Type', 'text/xml')
-        xmlHttp.send(soapRequest)
+      },
+      isFormValid () {
+        let validForm = true
+        if (this.incidentForm.client === '' || this.incidentForm.reportingClient === '' || this.incidentForm.contactEmail === '' || this.incidentForm.city === '' || this.incidentForm.ubication === '' || this.incidentForm.incidentDateTime === '' || this.incidentForm.category === '' || this.incidentForm.problemDetail === '' || this.incidentForm.telephone) {
+          validForm = false
+        }
+        if (!this.isSuccessfulEmailValid) {
+          validForm = false
+        }
+        return validForm
       },
       getCategories () {
         var xmlHttp = new XMLHttpRequest()
