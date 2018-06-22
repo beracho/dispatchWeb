@@ -62,8 +62,8 @@
                 <fieldset>
                   <div class="form-group">
                     <div class="input-group">
-                      <input id="simple-input" v-model="incidentForm.client" required/>
-                      <label class="control-label" for="simple-input">{{'forms.inputs.client'
+                      <input v-model="incidentForm.client" required/>
+                      <label class="control-label">{{'forms.inputs.client'
                         | translate}}</label><i class="bar"></i>
                     </div>
                   </div>
@@ -254,7 +254,7 @@
       },
       clearForm () {
         this.incidentForm = {
-          client: '',
+          client: this.$storage.getClient(),
           reportingClient: '',
           contactEmail: '',
           city: '',
@@ -282,7 +282,7 @@
             '<sucursal>' + this.incidentForm.city.id + '</sucursal>' +
             '<fechareg>' + this.incidentForm.notificationDate + '</fechareg>' +
             '<descripcion>' + this.incidentForm.problemDetail + '</descripcion>' +
-            '<contacto>' + this.incidentForm.reportingClient + '</contacto>' +
+            '<contacto>' + this.$storage.getClient() + '</contacto>' +
             '<correo>' + this.incidentForm.contactEmail + '</correo>' +
             '<ubicacion>' + this.incidentForm.city.description + '</ubicacion>' +
             '<criticidad>' + this.incidentForm.category.id + '</criticidad>' +
@@ -413,6 +413,9 @@
       ((currentdate.getMinutes()) > 9 ? (currentdate.getMinutes()) : '0' + (currentdate.getMinutes()))
     },
     watch: {
+      'incidentForm.client': function (newValue, oldValue) {
+        this.incidentForm.client = this.$storage.getClient()
+      },
       'incidentForm.telephone': function (newValue, oldValue) {
         let filteredValue = newValue.match(/\d/g)
         if (filteredValue !== null) {
