@@ -1,5 +1,5 @@
 {
-  "name": "vuestic-admin",
+  "name": "dispatch-web",
   "version": "1.6.0",
   "description": "Vue.js admin template",
   "author": "smartapant <smartapant@gmail.com>",
@@ -10,8 +10,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/epicmaxco/vuestic-admin.git"
+    "type": "git"
   },
   "license": "MIT",
   "dependencies": {
