@@ -1,5 +1,6 @@
 {
   "auth": {
+    "succesfullLogin": "Autenticación exitosa",
     "agree": "Acepto",
     "alreadyJoined": "Ya tienes una cuenta?",
     "createAccount": "Create cuenta",
@@ -34,6 +35,9 @@
     "verticalBarChart": "Vertical Bar Chart"
   },
   "dashboard": {
+    "fileLoaded": "Archivo cargado",
+    "dataRegisterError": "Error al registrar datos",
+    "fillAllFields": "Llene todos los campos",
     "reportCreated": "Reporte Creado Exitosamente",
     "modalText": "Caso generado exitosamente con el número:",
     "incidentReport": "Reporte de incidentes",

@@ -5,7 +5,7 @@ export default {
     login (data) {
       let responseAuth = {
         successfull: false,
-        message: 'Llene todos los campos'
+        message: this.$t('dashboard.fillAllFields')
       }
       var xmlHttp = new XMLHttpRequest()
       xmlHttp.open('POST', 'http://10.1.70.145/wsDispatch/Service1.asmx?wsdl', true)
@@ -28,7 +28,7 @@ export default {
             let datos = result['soap:Envelope']['soap:Body'][0].LoginResponse[0]
             if (datos.LoginResult[0] === 'true') {
               // loguea
-              responseAuth.message = 'Autenticación exitosa'
+              responseAuth.message = this.$t('dashboard.succesfullLogin')
               responseAuth.successfull = true
               this.$storage.setUser(data.username)
               this.$storage.setClient(datos.Client[0])

@@ -1,5 +1,6 @@
 {
   "auth": {
+    "succesfullLogin": "Login successfull",
     "agree": "I agree to",
     "alreadyJoined": "Already joined?",
     "createAccount": "Create account",
@@ -37,6 +38,9 @@
     "bubbleChart": "Bubble Chart"
   },
   "dashboard": {
+    "fileLoaded": "File uploaded",
+    "dataRegisterError": "Register error",
+    "fillAllFields": "Complete all fields",
     "reportCreated": "Report Created Successfully",
     "modalText": "Incident register succesfull, your case number is:",    
     "incidentReport": "Incident report",

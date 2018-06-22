@@ -243,7 +243,7 @@
     },
     methods: {
       inputFile () {
-        this.showToast('Archivo cargado', {
+        this.showToast(this.$t('dashboard.fileLoaded'), {
           icon: 'fa-star-o',
           position: 'top-right',
           duration: 2500,
@@ -303,7 +303,7 @@
                   this.$refs.mediumModal.open()
                 } else {
                   // Error
-                  this.showToast('Error al registrar datos', {
+                  this.showToast(this.$t('dashboard.dataRegisterError'), {
                     icon: 'fa-star-o',
                     position: 'top-right',
                     duration: 2500,
@@ -317,7 +317,7 @@
           xmlHttp.send(soapRequest)
         } else {
           // Error
-          this.showToast('Llene todos los campos', {
+          this.showToast(this.$t('dashboard.fillAllFields'), {
             icon: 'fa-star-o',
             position: 'top-right',
             duration: 2500,
