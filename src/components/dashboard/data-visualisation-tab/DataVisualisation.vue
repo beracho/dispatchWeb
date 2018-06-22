@@ -134,12 +134,22 @@
               <div class="col-md-6">
                 <fieldset>
                   <div class="form-group">
-                    <div class="input-group">
-                      <textarea type="text" id="simple-textarea"
-                                required></textarea>
-                      <label class="control-label" for="simple-textarea">{{'forms.inputs.fileSent'
-                        | translate}}</label><i class="bar"></i>
-                    </div>
+                    <file-upload
+                      ref="upload"
+                      v-model="incidentForm.files"
+
+                      chunk-enabled
+                      :chunk="{
+                        action: '/upload/chunk',
+                        minSize: 1048576,
+                        maxActive: 3,
+                        maxRetries: 5,
+                      }"
+
+                      @input-file="inputFile"
+                      @input-filter="inputFilter">
+                      Upload file
+                    </file-upload>
                   </div>
                 </fieldset>
               </div>
@@ -209,6 +219,7 @@
           incidentDateTime: '',
           category: '',
           problemDetail: '',
+          files: [],
           telephone: ''
         },
         donutChartData: DonutChartData,
@@ -231,6 +242,16 @@
       }
     },
     methods: {
+      inputFile () {
+        this.showToast('Archivo cargado', {
+          icon: 'fa-star-o',
+          position: 'top-right',
+          duration: 2500,
+          fullWidth: this.isToastFullWidth
+        })
+      },
+      inputFilter () {
+      },
       clearForm () {
         this.incidentForm = {
           client: '',
