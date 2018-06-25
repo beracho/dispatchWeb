@@ -6,8 +6,8 @@ export default {
       dataClass: 'text-center'
     },
     {
-      name: 'name',
-      sortField: 'name'
+      name: 'description',
+      sortField: 'description'
     },
     {
       name: 'email',
@@ -19,7 +19,7 @@ export default {
     },
     {
       name: 'salary',
-      title: 'score'
+      title: 'date'
     }
   ],
   sortFunctions: {

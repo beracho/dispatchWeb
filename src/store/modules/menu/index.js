@@ -4,7 +4,7 @@ import * as types from '../../mutation-types'
 import dashboard from './dashboard'
 // import ui from './ui'
 // import maps from './maps'
-// import tables from './tables'
+import incidentTable from './tables'
 import auth from './auth'
 // import extra from './extra'
 
@@ -13,7 +13,7 @@ const state = {
     dashboard,
     // statistics,
     // forms,
-    // tables,
+    incidentTable,
     // ui,
     // extra,
     auth,

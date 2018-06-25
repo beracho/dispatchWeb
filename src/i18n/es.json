@@ -184,7 +184,7 @@
     "progressBars": "Barras de Progreso",
     "signUp": "Registrar",
     "statistics": "Estadisticas",
-    "tables": "Tablas",
+    "incidentList": "Lista de incidencias",
     "typography": "Tipografía",
     "uiElements": "Elementos UI"
   },
@@ -229,6 +229,7 @@
     "title": "Barras de Progresso"
   },
   "tables": {
+    "title": "Mis registros de incidencia",
     "basic": "Tabla basica",
     "styled": "Colores, Iconos, Etiquetas",
     "advanced": "Búsqueda y Paginación",

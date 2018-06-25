@@ -204,7 +204,7 @@
     "progressBars": "Progress Bars",
     "signUp": "Sign up",
     "statistics": "Statistics",
-    "tables": "Tables",
+    "incidentList": "Incident list",
     "typography": "Typography",
     "uiElements": "UI Elements",
     "treeView": "Tree view",
@@ -250,6 +250,7 @@
     "title": "Progress Bars"
   },
   "tables": {
+    "title": "My incident registries",
     "basic": "Basic Table",
     "styled": "Colors, Icons, Labels",
     "advanced": "Search & Pagination",
