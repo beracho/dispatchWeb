@@ -15,9 +15,6 @@ import VuesticPlugin from 'vuestic-theme/vuestic-plugin'
 import './i18n'
 import YmapPlugin from 'vue-yandex-maps'
 
-const VueUploadComponent = require('vue-upload-component')
-Vue.component('file-upload', VueUploadComponent)
-
 Vue.use(VuesticPlugin)
 Vue.use(YmapPlugin)
 Vue.use(Storage)

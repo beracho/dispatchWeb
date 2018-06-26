@@ -132,26 +132,7 @@
                 </fieldset>
               </div>
               <div class="col-md-6">
-                <fieldset>
-                  <div class="form-group">
-                    <file-upload
-                      ref="upload"
-                      v-model="incidentForm.files"
-
-                      chunk-enabled
-                      :chunk="{
-                        action: '/upload/chunk',
-                        minSize: 1048576,
-                        maxActive: 3,
-                        maxRetries: 5,
-                      }"
-
-                      @input-file="inputFile"
-                      @input-filter="inputFilter">
-                      Upload file
-                    </file-upload>
-                  </div>
-                </fieldset>
+                    <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone>
               </div>
 
               <div class="col-sm-6 d-flex justify-content-center" :class="{'col-lg-6 col-xl-6' : sidebarOpened, 'col-lg-6' : !sidebarOpened }">
@@ -187,11 +168,16 @@
   import DonutChartData from './DonutChartData'
   import FieldsDef from './fields-definition'
   import {mapGetters} from 'vuex'
+  import vue2Dropzone from 'vue2-dropzone'
+  import 'vue2-dropzone/dist/vue2Dropzone.css'
 
   Vue.component('badge-column', BadgeColumn)
 
   export default {
     name: 'data-visualisation-tab',
+    components: {
+      vueDropzone: vue2Dropzone
+    },
     computed: {
       datePickerDisabled: () => [date => !(date < (new Date()))],
       isSuccessfulEmailValid () {
@@ -238,20 +224,26 @@
           }
         ],
         incidentResponse: '',
-        show: true
+        show: true,
+        dropzoneOptions: {
+          url: 'https://httpbin.org/post',
+          thumbnailWidth: 150,
+          maxFilesize: 0.5,
+          headers: { 'My-Awesome-Header': 'header value' },
+          dictDefaultMessage: this.$t('dropzone.loadFilesHere'),
+          dictFallbackMessage: this.$t('dropzone.noDragAndDrop'),
+          dictFallbackText: this.$t('dropzone.useFormBelow'),
+          dictFileTooBig: this.$t('dropzone.fileTooBig'),
+          dictInvalidFileType: this.$t('dropzone.fileTipeUnsuported'),
+          dictResponseError: this.$t('dropzone.serverAnswer'),
+          dictCancelUpload: this.$t('dropzone.cancelUpload'),
+          dictCancelUploadConfirmation: this.$t('dropzone.sureCancel'),
+          dictRemoveFile: this.$t('dropzone.deleteFile'),
+          dictMaxFilesExceeded: this.$t('dropzone.fileLimit'),
+        }
       }
     },
     methods: {
-      inputFile () {
-        this.showToast(this.$t('dashboard.fileLoaded'), {
-          icon: 'fa-star-o',
-          position: 'top-right',
-          duration: 2500,
-          fullWidth: this.isToastFullWidth
-        })
-      },
-      inputFilter () {
-      },
       clearForm () {
         this.incidentForm = {
           client: this.$storage.getClient(),

@@ -37,6 +37,18 @@
     "donutChart": "Donut Chart",
     "bubbleChart": "Bubble Chart"
   },
+  "dropzone": {
+    "loadFilesHere": "Load your files here.",
+    "noDragAndDrop": "Your browser doesn't allow drag and drop.",
+    "useFormBelow": "Use form below to upload your files like old times.",
+    "fileTooBig": "File too big ({{filesize}}MiB). Max alowed: {{maxFilesize}}MiB.",
+    "fileTipeUnsuported": "File extension not allowed",
+    "serverAnswer": "Server's answer code: {{statusCode}}.",
+    "cancelUpload": "Cancel upload.",
+    "sureCancel": "Are you sure you want to cancel the upload?",
+    "deleteFile": "Delete file.",
+    "fileLimit": "Can't upload anymore files."
+  },
   "dashboard": {
     "fileLoaded": "File uploaded",
     "dataRegisterError": "Register error",
