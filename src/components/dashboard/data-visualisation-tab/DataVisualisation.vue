@@ -25,16 +25,11 @@
               </div>
               <div class="col-md-4">
                 <fieldset>
-                  <div class="form-group with-icon-right" :class="{'has-error': errors.has('successfulEmail'), 'valid': isSuccessfulEmailValid}">
+                  <div class="form-group">
                     <div class="input-group">
-                      <input id="successfulEmail" name="successfulEmail" v-model="incidentForm.contactEmail" v-validate="'required|email'" required/>
-                      <i class="fa fa-exclamation-triangle error-icon icon-right input-icon"></i>
-                      <i class="fa fa-check valid-icon icon-right input-icon"></i>
-                      <label class="control-label" for="successfulEmail">{{'forms.inputs.contactEmail' | translate}} </label>
-                      <i class="bar"></i>
-                      <small v-show="errors.has('successfulEmail')" class="help text-danger">
-                        {{ errors.first('successfulEmail') }}
-                      </small>
+                      <input v-model="incidentForm.contactEmail" required/>
+                      <label class="control-label">{{'forms.inputs.contactEmail'
+                        | translate}}</label><i class="bar"></i>
                     </div>
                   </div>
                 </fieldset>
@@ -71,24 +66,11 @@
               </div>
               <div class="col-md-4">
                 <fieldset>
-                  <vuestic-simple-select
-                    id="cityOptions"
-                    :label="'forms.inputs.city' | translate"
-                    v-model="incidentForm.city"
-                    option-key="description"
-                    v-bind:options="selectLocations">
-                  </vuestic-simple-select>
+                  <v-select v-model="incidentForm.city" label="description" :options="selectLocations" :placeholder="'forms.inputs.city' | translate"></v-select>
                 </fieldset>
               </div>
               <div class="col-md-4">
-                <fieldset>
-                  <vuestic-simple-select
-                    :label="'forms.inputs.category' | translate"
-                    v-model="incidentForm.category"
-                    option-key="description"
-                    v-bind:options="selectCategories">
-                  </vuestic-simple-select>
-                </fieldset>
+                <v-select v-model="incidentForm.category" label="description" :options="selectCategories" :placeholder="'forms.inputs.category' | translate"></v-select>
               </div>
             </div>
             <div class="row">
@@ -182,7 +164,7 @@
       datePickerDisabled: () => [date => !(date < (new Date()))],
       isSuccessfulEmailValid () {
         let isValid = false
-        if (this.formFields.successfulEmail) {
+        if (this.incidentForm.contactEmail) {
           isValid = this.formFields.successfulEmail.validated && this.formFields.successfulEmail.valid
         }
         return isValid
@@ -254,7 +236,8 @@
           incidentDateTime: '',
           category: '',
           problemDetail: '',
-          telephone: ''
+          telephone: '',
+          files: []
         }
         let currentdate = new Date()
         this.incidentForm.notificationDate = '' + currentdate.getFullYear() + '-' +
@@ -307,23 +290,50 @@
           }
           xmlHttp.setRequestHeader('Content-Type', 'text/xml')
           xmlHttp.send(soapRequest)
-        } else {
-          // Error
-          this.showToast(this.$t('dashboard.fillAllFields'), {
+        }
+      },
+      isFormValid () {
+        let validForm = true
+        let message = ''
+        if (this.incidentForm.files.length === 0) {
+          validForm = false
+          message = this.$t('dashboard.validation.fileUloaded')
+        }
+        if (this.incidentForm.category === '') {
+          validForm = false
+          message = this.$t('dashboard.validation.incidentType')
+        }
+        if (this.incidentForm.city === '') {
+          validForm = false
+          message = this.$t('dashboard.validation.cityField')
+        }
+        if (this.incidentForm.incidentDateTime === '') {
+          validForm = false
+          message = this.$t('dashboard.validation.incidentDate')
+        }
+        if (this.incidentForm.problemDetail === '') {
+          validForm = false
+          message = this.$t('dashboard.validation.issueDetail')
+        }
+        if (this.incidentForm.reportingClient === '') {
+          validForm = false
+          message = this.$t('dashboard.validation.reportingClientField')
+        }
+        if (this.incidentForm.telephone === '') {
+          validForm = false
+          message = this.$t('dashboard.validation.telephoneNumber')
+        }
+        if (this.incidentForm.contactEmail === '') {
+          validForm = false
+          message = this.$t('dashboard.validation.emailField')
+        }
+        if (!validForm) {
+          this.showToast(message, {
             icon: 'fa-star-o',
             position: 'top-right',
             duration: 2500,
             fullWidth: this.isToastFullWidth
           })
-        }
-      },
-      isFormValid () {
-        let validForm = true
-        if (this.incidentForm.client === '' || this.incidentForm.reportingClient === '' || this.incidentForm.contactEmail === '' || this.incidentForm.city === '' || this.incidentForm.ubication === '' || this.incidentForm.incidentDateTime === '' || this.incidentForm.category === '' || this.incidentForm.problemDetail === '' || this.incidentForm.telephone) {
-          validForm = false
-        }
-        if (!this.isSuccessfulEmailValid) {
-          validForm = false
         }
         return validForm
       },

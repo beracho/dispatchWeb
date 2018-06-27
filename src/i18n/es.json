@@ -47,6 +47,17 @@
     "fileLimit": "No puede subir más archivos"
   },
   "dashboard": {
+    "validation": {
+      "fileUloaded": "Adjunte una foto, log o archivo de la incidencia",
+      "incidentType": "Ingrese el tipo de incidente",
+      "cityField": "Ingrese campo de ciudad",
+      "incidentDate": "Ingrese la fecha y hora de la incidencia",
+      "invalidMail": "Email invalido",
+      "issueDetail": "Ingrese el detalle del problema",
+      "reportingClientField": "Ingrese el campo de quien reporta",
+      "telephoneNumber": "Ingrese su número telefónico",
+      "emailField": "Ingrese el campo de email."
+    },
     "fileLoaded": "Archivo cargado",
     "dataRegisterError": "Error al registrar datos",
     "fillAllFields": "Llene todos los campos",

@@ -50,6 +50,17 @@
     "fileLimit": "Can't upload anymore files."
   },
   "dashboard": {
+    "validation": {
+      "fileUloaded": "Add incident file. (image, log or pdf)",
+      "incidentType": "Fill incident type.",
+      "cityField": "Fill the city field.",
+      "incidentDate": "Fill the incident date and time.",
+      "invalidMail": "Invalid Email.",
+      "issueDetail": "Fill the incident detail.",
+      "reportingClientField": "Fill reporting client field.",
+      "telephoneNumber": "Fill the telephone field.",
+      "emailField": "Fill contact email field."
+    },
     "fileLoaded": "File uploaded",
     "dataRegisterError": "Register error",
     "fillAllFields": "Complete all fields",

@@ -14,7 +14,9 @@ import { sync } from 'vuex-router-sync'
 import VuesticPlugin from 'vuestic-theme/vuestic-plugin'
 import './i18n'
 import YmapPlugin from 'vue-yandex-maps'
+import vSelect from 'vue-select'
 
+Vue.component('v-select', vSelect)
 Vue.use(VuesticPlugin)
 Vue.use(YmapPlugin)
 Vue.use(Storage)
